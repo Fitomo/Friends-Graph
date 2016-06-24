@@ -1,6 +1,9 @@
 const db = require('./db.js').db;
 
 exports.createEntriesAndRelationships = (objectOfUsers) => {
+  if(typeof objectOfUsers !== 'object'){
+    return 'not a valid input';
+  }
   for(var key in objectOfUsers){
     db.cypher({
         queries: [{
@@ -41,6 +44,9 @@ exports.createRelationships = (objectOfUsers) => {
 }
 
 exports.getFriendsGraph = (userId) => {
+  if(typeof userId !== 'string'){
+    return 'not a valid input';
+  }
   db.cypher({
     queries: [{
       query: 'MATCH (a:USER {id:{userId}})-[:KNOWS]-(b) RETURN b',
@@ -59,6 +65,9 @@ exports.getFriendsGraph = (userId) => {
 }
 
 exports.getFriendsOfFriends = (userId) => {
+  if(typeof userId !== 'string'){
+    return 'not a valid input';
+  }
   db.cypher({
     queries: [{
       query: 'MATCH (a:USER {id:{userId}})-[:KNOWS]-(b) MATCH (b)-[:KNOWS]-(c) RETURN c',
