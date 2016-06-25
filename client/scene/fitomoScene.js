@@ -1,40 +1,54 @@
-var scene, camera, renderer, controls;
-    var geometry, material, mesh;
+var scene, camera, renderer, controls, geometry, material,torusKnot;
 
-    init();
-    animate();
+init();
+animate();
 
-    function init() {  
-        scene = new THREE.Scene();
+function init() {  
+    scene = new THREE.Scene();
+    var WIDTH = window.innerWidth;
+    var HEIGHT = window.innerHeight;
+    camera = new THREE.PerspectiveCamera(45, WIDTH / HEIGHT, 0.1, 20000);
+    camera.position.set(100,200,0)
+    scene.add(camera);
+    // render the scene
+    renderer = new THREE.WebGLRenderer({antialias:true});
+    renderer.setSize(WIDTH, HEIGHT);
 
-        camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 10000 );
-        camera.position.set( -1200, 800, 1200)
+
+//     radius — Default is 100.
+// tube — Diameter of the tube. Default is 40.
+// tubularSegments — Default is 64.
+// radialSegments — Default is 8.
+// p — This value determines, how many times the geometry winds around its axis of rotational symmetry. Default is 2.
+// q — This value determines, how many times the geometry winds around a circle in the interior of the torus. Default is 3.
 
 
-        // controls = new THREE.TrackballControls( camera );
-        // controls.target.set( 0, 0, 0 );
+    controls = new THREE.OrbitControls(camera, renderer.domElement);
 
-        geometry = new THREE.BoxGeometry( 200, 200, 200 );
-        material = new THREE.MeshBasicMaterial( { color: 0xff0000, wireframe: true } );
+    geometry = new THREE.TorusKnotBufferGeometry( 20, 50, 3, 16, 10, 5);
+    material = new THREE.MeshBasicMaterial( { color: 0xffff00, wireframe: true, morphTargets: true } );
+    torusKnot = new THREE.Mesh( geometry, material );
+    scene.add( torusKnot );
 
-        mesh = new THREE.Mesh( geometry, material );
-        scene.add( mesh );
+    window.addEventListener('resize', function() {
+      var WIDTH = window.innerWidth,
+          HEIGHT = window.innerHeight;
+      renderer.setSize(WIDTH, HEIGHT);
+      camera.aspect = WIDTH / HEIGHT;
+      camera.updateProjectionMatrix();
+    });
 
-        renderer = new THREE.WebGLRenderer();
-        renderer.setSize( window.innerWidth, window.innerHeight );
+    document.body.appendChild( renderer.domElement );
+}
 
-        document.body.appendChild( renderer.domElement );
+function animate() {
 
-    }
+    requestAnimationFrame( animate );
+    torusKnot.rotation.x += .01;
+    torusKnot.rotation.y += 0.01;
+    renderer.render( scene, camera );
 
-    function animate() {
-
-        requestAnimationFrame( animate );
-
-        mesh.rotation.x += 0.01;
-        mesh.rotation.y += 0.02;
-
-        renderer.render( scene, camera );
+    controls.update
 
 }
 
