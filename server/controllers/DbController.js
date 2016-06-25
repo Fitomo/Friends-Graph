@@ -1,6 +1,7 @@
 const createEntriesAndRelationships = require('../db/dbhelpers.js').createEntriesAndRelationships;
 const getFriendsGraph = require('../db/dbhelpers.js').getFriendsGraph;
 const getFriendsOfFriends = require('../db/dbhelpers.js').getFriendsOfFriends;
+
 module.exports = {
   createEntriesAndRelationships: (req, res) => {
     // valid options are type, amountOfUsers, gender, difficulty, amountOfDays, bodyType

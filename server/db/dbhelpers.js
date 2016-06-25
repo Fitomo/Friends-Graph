@@ -49,7 +49,7 @@ exports.getFriendsGraph = (userId) => {
   }
   db.cypher({
     queries: [{
-      query: 'MATCH (a:USER {id:{userId}})-[:KNOWS]-(b) RETURN b',
+      query: 'MATCH (a:USER {id:{userId}})-[:KNOWS]->(b) RETURN b',
       params: {
         id: userId,
       },
@@ -70,7 +70,7 @@ exports.getFriendsOfFriends = (userId) => {
   }
   db.cypher({
     queries: [{
-      query: 'MATCH (a:USER {id:{userId}})-[:KNOWS]-(b) MATCH (b)-[:KNOWS]-(c) RETURN c',
+      query: 'MATCH (a:USER {id:{userId}})-[:KNOWS]->(b) MATCH (b)-[:KNOWS]->(c) RETURN c',
       params: {
         id: userId,
       },
