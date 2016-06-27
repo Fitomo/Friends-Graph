@@ -24,6 +24,23 @@ exports.createEntriesAndRelationships = (objectOfUsers) => {
 
 exports.createRelationships = (objectOfUsers) => {
   for(var key in objectOfUsers){
+    MATC (:Person)-[r:ACTED_IN]->(:Movie) delete r
+    // delete existing relationships of user,
+    // this is to account for users unfriending eachother
+    db.cypher({
+        queries: [{
+          query: 'MATCH (:USER {id:{id}})-[r:KNOWS]->(:USER) delete r',
+          params: {
+            id: key,
+          },
+        }],
+        }, function(err, results){
+          if(err){
+            throw err;
+          }
+        }
+    );
+    // iterate through
     for(var i = 0; i < objectOfUsers[key].friends.length; i++){
       db.cypher({
         queries: [{
