@@ -40,7 +40,6 @@ exports.createRelationships = (objectOfUsers) => {
           }
         }
     );
-    // iterate through
     for(var i = 0; i < objectOfUsers[key].friends.length; i++){
       db.cypher({
         queries: [{
