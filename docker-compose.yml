@@ -1,0 +1,27 @@
+version: '2'
+
+services:  
+
+  neo4j: 
+    image: neo4j
+    networks:
+      - nodeapp-network
+    ports: 
+      - "7474:7474"
+    volumes:
+      - /opt/data
+
+  node: 
+    build: 
+      context: .
+      dockerfile: node.dockerfile
+    ports: 
+      - "5000:5000"
+    networks:
+      - nodeapp-network
+
+networks: 
+  nodeapp-network: 
+    driver: bridge
+
+
