@@ -7,9 +7,11 @@ dbHelpers.createEntriesAndRelationships(userData);
 
 require('./routes/api-routes.js')(app);
 app.get('*', (req, res) => {
-  res.end('Avaiable routes are /api/createEntriesAndRelationships?objectOfUsers=object /api/getFriendsGraph?userId=string or /api/getFriendsOfFriends?userId=string');
+  res.end('Avaiable routes are /api/createEntriesAndRelationships, /api/getFriendsGraph, or /api/getFriendsOfFriends');
 });
 
-app.listen(5000, () => {
+app.listen(5000, process.env.HOST, () => {
   console.log('listening on port 5000');
+  console.log('process.env:' process.env);
+  console.log('process.env.HOST:' process.env.HOST);
 });
