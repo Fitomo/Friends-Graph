@@ -23,6 +23,7 @@ exports.createEntriesAndRelationships = (objectOfUsers) => {
 }
 
 exports.createRelationships = (objectOfUsers) => {
+  console.log('creaitng relationships');
   for(var key in objectOfUsers){
     // delete existing relationships of user,
     // this is to account for users unfriending eachother
@@ -53,7 +54,7 @@ exports.createRelationships = (objectOfUsers) => {
             throw err;
           }
         }
-      );
+      )
     }
   }
 }
