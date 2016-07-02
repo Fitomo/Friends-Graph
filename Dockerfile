@@ -14,7 +14,4 @@ COPY . /usr/src/app
 
 EXPOSE 5000
 
-# Use Dockerize to stall npm start
-RUN apt-get update && apt-get install -y wget
-
 CMD ["npm", "start" ]
