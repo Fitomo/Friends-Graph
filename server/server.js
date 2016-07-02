@@ -10,8 +10,6 @@ app.get('*', (req, res) => {
   res.end('Avaiable routes are /api/createEntriesAndRelationships, /api/getFriendsGraph, or /api/getFriendsOfFriends');
 });
 
-app.listen(5000, process.env.HOST, () => {
+app.listen(5000, () => {
   console.log('listening on port 5000');
-  console.log('process.env:' process.env);
-  console.log('process.env.HOST:' process.env.HOST);
 });
