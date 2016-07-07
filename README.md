@@ -1,5 +1,5 @@
 
-# FitomoUserGeneration
+# Fitomo Friend's Graph
 
 ## Table of Contents
 
