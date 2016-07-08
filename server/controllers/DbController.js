@@ -5,7 +5,7 @@ const getFriendsOfFriends = require('../db/dbhelpers.js').getFriendsOfFriends;
 module.exports = {
   createEntriesAndRelationships: (req, res) => {
     const user = {};
-    const friendsList = JSON.Parse(req.query.friends);
+    const friendsList = JSON.parse(req.query.friends);
     user[req.query.id] = {'friends': friendsList};
     res.end(JSON.stringify(createEntriesAndRelationships(options)));
   },
