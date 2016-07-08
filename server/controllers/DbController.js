@@ -5,6 +5,7 @@ const getFriendsOfFriends = require('../db/dbhelpers.js').getFriendsOfFriends;
 module.exports = {
   createEntriesAndRelationships: (req, res) => {
     const options = req.query;
+    console.log(req.query)
     res.end(JSON.stringify(createEntriesAndRelationships(options.ObjectOfUsers)));
   },
   getFriendsGraph: (req, res) => {
