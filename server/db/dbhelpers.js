@@ -4,6 +4,7 @@ exports.createEntriesAndRelationships = (objectOfUsers) => {
   if(typeof objectOfUsers !== 'object'){
     return 'not a valid input';
   }
+  // can handle multiple users, but for now it will only be one
   for(var key in objectOfUsers){
     db.cypher({
         queries: [{
