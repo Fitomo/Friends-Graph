@@ -6,7 +6,7 @@ module.exports = {
   createEntriesAndRelationships: (req, res) => {
     const user = {};
     const friendsList = JSON.Parse(req.query.friends);
-    user[req.query.id] = {friends: friendsList)};
+    user[req.query.id] = {'friends': friendsList};
     res.end(JSON.stringify(createEntriesAndRelationships(options)));
   },
   getFriendsGraph: (req, res) => {

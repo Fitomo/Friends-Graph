@@ -3,7 +3,8 @@ const app = express();
 const userData = require('../testData/friends.js').data;
 const dbHelpers = require('./db/dbhelpers.js');
 
-dbHelpers.createEntriesAndRelationships(userData);
+// uncomment to seed test data into DB on server start
+// dbHelpers.createEntriesAndRelationships(userData);
 
 require('./routes/api-routes.js')(app);
 app.get('*', (req, res) => {
