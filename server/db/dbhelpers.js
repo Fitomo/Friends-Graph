@@ -27,19 +27,19 @@ exports.createRelationships = (objectOfUsers) => {
   for(var key in objectOfUsers){
     // delete existing relationships of user,
     // this is to account for users unfriending eachother
-    db.cypher({
-        queries: [{
-          query: 'MATCH (:USER {id:{id}})-[r:KNOWS]->(:USER) delete r',
-          params: {
-            id: key,
-          },
-        }],
-        }, function(err, results){
-          if(err){
-            throw err;
-          }
-        }
-    );
+    // db.cypher({
+    //     queries: [{
+    //       query: 'MATCH (:USER {id:{id}})-[r:KNOWS]->(:USER) delete r',
+    //       params: {
+    //         id: key,
+    //       },
+    //     }],
+    //     }, function(err, results){
+    //       if(err){
+    //         throw err;
+    //       }
+    //     }
+    // );
     for(var i = 0; i < objectOfUsers[key].friends.length; i++){
       db.cypher({
         queries: [{
